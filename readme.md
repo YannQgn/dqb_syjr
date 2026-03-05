@@ -22,39 +22,68 @@ The database used during execution is an in-memory SQLite database.
 Architecture
 ------------
 User (Natural language)
+
         |
+
         v
+
 Gemini CLI (LLM reasoning)
+
         |
+
         v
+
 MCP Server (server.py)
+
         |
+
         +---- Tools
+
         |       load_csv
+
         |       list_tables
+
         |       describe_schema
+
         |       run_query
+
         |
+
         +---- Resources
+
                 db://schema
+
                 db://query-history
+
         |
+
         v
+        
 SQLite (in-memory database)
 
 
 Project Structure
 -----------------
 electiveclaude/
+
 │
+
 ├─ server.py
+
 ├─ sqlite_helper.py
+
 ├─ requirements.txt
+
 ├─ README.txt
+
 │
+
 ├─ data/
+
 │   └─ pokemon.csv
+
 │
+
 └─ venv/
 
 
@@ -93,7 +122,7 @@ Check installation:
 
 `python --version`
 
-
+-----------------------------
 2) Create Virtual Environment
 -----------------------------
 
@@ -105,7 +134,7 @@ Activate the environment:
 
 `venv\Scripts\activate`
 
-
+-----------------------
 3) Install Dependencies
 -----------------------
 
@@ -151,6 +180,7 @@ Running Gemini
 Start Gemini:
 
 `gemini -y`
+
 The -y flag automatically accepts tool execution.
 
 
@@ -181,23 +211,19 @@ Resources:
 Available Tools
 ===============
 
-load_csv(file_path: str, table_name: str)
-
+`load_csv(file_path: str, table_name: str)`
 Loads a CSV file into a SQLite table with automatic type detection.
 
 
-list_tables()
-
+`list_tables()`
 Returns all tables currently stored in the database.
 
 
-describe_schema()
-
+`describe_schema()`
 Returns the database schema (tables, columns, and types).
 
 
-run_query(query: str)
-
+`run_query(query: str)`
 Executes a SQL query on the database.
 
 Security restriction:
@@ -224,17 +250,17 @@ The system prevents destructive queries.
 
 Blocked SQL commands:
 
-DROP
-DELETE
-ALTER
-INSERT
-UPDATE
-CREATE
-REPLACE
-TRUNCATE
-ATTACH
-DETACH
-PRAGMA
+`DROP`
+`DELETE`
+`ALTER`
+`INSERT`
+`UPDATE`
+`CREATE`
+`REPLACE`
+`TRUNCATE`
+`ATTACH`
+`DETACH`
+`PRAGMA`
 
 Only single SELECT queries are allowed.
 
@@ -328,25 +354,25 @@ Answers are based on real data and are accurate.
 Evaluation Criteria Coverage
 =============================
 
-Tool Design
+1. Tool Design
 ✓ load_csv
 ✓ list_tables
 ✓ describe_schema
 ✓ run_query
 
-Implementation
+2. Implementation
 ✓ SQLite integration
 ✓ CSV ingestion
 ✓ automatic type detection
 
-Integration
+3. Integration
 ✓ Gemini CLI
 ✓ MCP Inspector
 
-Documentation
+4. Documentation
 ✓ setup instructions
 ✓ usage examples
 ✓ tool descriptions
 
-Comparison Analysis
+5. Comparison Analysis
 ✓ with tools vs without tools

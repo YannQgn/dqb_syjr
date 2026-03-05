@@ -21,71 +21,44 @@ The database used during execution is an in-memory SQLite database.
 
 Architecture
 ------------
+```
 User (Natural language)
-
-        |
-
-        v
-
+      |
+      v
 Gemini CLI (LLM reasoning)
-
-        |
-
-        v
-
+      |
+      v
 MCP Server (server.py)
-
-        |
-
-        +---- Tools
-
-        |       load_csv
-
-        |       list_tables
-
-        |       describe_schema
-
-        |       run_query
-
-        |
-
-        +---- Resources
-
-                db://schema
-
-                db://query-history
-
-        |
-
-        v
-        
+      |
+      +-- Tools
+      |     - load_csv
+      |     - list_tables
+      |     - describe_schema
+      |     - run_query
+      |
+      +-- Resources
+            - db://schema
+            - db://query-history
+      |
+      v
 SQLite (in-memory database)
-
+```
 
 Project Structure
 -----------------
+```
 electiveclaude/
-
 │
-
 ├─ server.py
-
 ├─ sqlite_helper.py
-
 ├─ requirements.txt
-
 ├─ README.txt
-
 │
-
 ├─ data/
-
 │   └─ pokemon.csv
-
 │
-
 └─ venv/
-
+```
 
 Dataset
 -------

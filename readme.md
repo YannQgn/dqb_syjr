@@ -51,7 +51,7 @@ electiveclaude/
 │
 ├─ server.py
 ├─ sqlite_helper.py
-├─ requirements.txt
+├─ rq.txt
 ├─ README.txt
 │
 ├─ data/
@@ -147,14 +147,65 @@ Expected output:
 electiveclaude: python server.py (stdio)
 
 
-Running Gemini
+Running the project
 ==============
 
-Start Gemini:
+Execute `run_demo.bat`
 
-`gemini -y`
+Prompting Strategies
+====================
 
-The -y flag automatically accepts tool execution.
+This project demonstrates how different system prompting strategies influence
+tool usage and reasoning in LLM agents.
+
+Three prompting strategies are provided:
+
+Minimal Prompt
+--------------
+The model receives minimal guidance and decides when to use tools.
+
+Example system prompt:
+
+"You have access to tools. Use them when needed to answer the user's question."
+
+
+Structured Prompt
+-----------------
+The model follows a structured reasoning process before using tools.
+
+Steps:
+1. Explain what information is needed
+2. Select the appropriate tool
+3. Execute the tool
+4. Interpret the result
+
+
+Expert Workflow Prompt
+----------------------
+The model follows a defined expert workflow.
+
+Phase 1 — Discovery
+Use list_tables and describe_schema to understand the database structure.
+
+Phase 2 — Data Exploration
+Use run_query to retrieve relevant information.
+
+Phase 3 — Synthesis
+Combine results into a clear answer.
+
+
+Switching Prompt Strategies
+---------------------------
+
+The demo script allows selecting the prompting strategy before launching Gemini.
+
+Available prompts:
+
+prompts/minimal.md  
+prompts/structured.md  
+prompts/expert.md
+
+These prompts are copied into GEMINI.md before starting Gemini CLI.
 
 
 Running the MCP Inspector
